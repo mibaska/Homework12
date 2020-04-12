@@ -96,28 +96,34 @@ function validateInputs() {
 }
 
 async function handleFormSubmit(event) {
+  console.log("aleph");
   event.preventDefault();
 
-  let workoutData = {};
+  let workoutData = { type, name, duration, distance, weight, sets, reps};
 
   if (workoutType === "cardio") {
+    console.log("beth");
     workoutData.type = "cardio";
     workoutData.name = cardioNameInput.value.trim();
     workoutData.distance = Number(distanceInput.value.trim());
     workoutData.duration = Number(durationInput.value.trim());
+    console.log("gimel");
   } else if (workoutType === "resistance") {
+    console.log("beth");
     workoutData.type = "resistance";
     workoutData.name = nameInput.value.trim();
     workoutData.weight = Number(weightInput.value.trim());
     workoutData.sets = Number(setsInput.value.trim());
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
+    console.log("gimel");
   }
 
   await API.addExercise(workoutData);
+  console.log("vau");
   clearInputs();
   toast.classList.add("success");
-}
+};
 
 function handleToastAnimationEnd() {
   toast.removeAttribute("class");
