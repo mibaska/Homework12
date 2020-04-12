@@ -19,12 +19,13 @@ const API = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
-
+    console.log(res);
     const json = await res.json();
     console.log("he");
     return json;
   },
   async createWorkout(data = {}) {
+    console.log(data);
     const res = await fetch("/api/workouts", {
       method: "POST",
       body: JSON.stringify(data),
@@ -32,7 +33,7 @@ const API = {
     });
 
     const json = await res.json();
-
+    console.log(json);
     return json;
   },
 

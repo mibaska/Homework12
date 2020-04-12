@@ -5,10 +5,10 @@ const exerciseSchema = new Schema({
   type: { type: String, lowercase: true, required: "Enter the type of workout." },
   name: { type: String, required: "Enter the name of the workout." },
   duration: { type: Number, required: "Enter the duration of the workout." },
-  distance: { type: Number },
-  weight: { type: Number },
-  reps: { type: Number },
-  sets: { type: Number }
+  distance: { type: Number, default: 0 },
+  weight: { type: Number, default: 0 },
+  reps: { type: Number, default: 0 },
+  sets: { type: Number, default: 0 }
 });
 
 const workoutSchema = new Schema({

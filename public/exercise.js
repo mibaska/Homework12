@@ -19,13 +19,14 @@ let shouldNavigateAway = false;
 
 async function initExercise() {
   let workout;
-
+  console.log(location.search.split("=")[1]);
   if (location.search.split("=")[1] === undefined) {
-    workout = await API.createWorkout()
-    console.log(workout)
+    workout = await API.createWorkout();
+    console.log("workout", workout);
   }
   if (workout) {
     location.search = "?id=" + workout._id;
+    console.log(workout._id);
   }
 
 }
@@ -99,7 +100,7 @@ async function handleFormSubmit(event) {
   console.log("aleph");
   event.preventDefault();
 
-  let workoutData = { type, name, duration, distance, weight, sets, reps};
+  let workoutData = {};
 
   if (workoutType === "cardio") {
     console.log("beth");
@@ -108,6 +109,7 @@ async function handleFormSubmit(event) {
     workoutData.distance = Number(distanceInput.value.trim());
     workoutData.duration = Number(durationInput.value.trim());
     console.log("gimel");
+    console.log(workoutData);
   } else if (workoutType === "resistance") {
     console.log("beth");
     workoutData.type = "resistance";
@@ -117,13 +119,16 @@ async function handleFormSubmit(event) {
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
     console.log("gimel");
+    console.log(workoutData);
   }
 
   await API.addExercise(workoutData);
+  // db.collection.insertOne(workoutData);
   console.log("vau");
+  console.log(workoutData);
   clearInputs();
   toast.classList.add("success");
-};
+}
 
 function handleToastAnimationEnd() {
   toast.removeAttribute("class");
