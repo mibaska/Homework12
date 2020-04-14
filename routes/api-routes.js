@@ -13,7 +13,16 @@ router.get("/api/workouts/", (req, res) => {
 });
 
 router.put("/api/workouts/:id", (req, res) => {
-  Workout.updateOne({ _id: req.params.id })
+  Workout.updateOne(
+    { _id: req.params.id },
+    { type: req.params.type },
+    { name: req.params.name },
+    { duration: req.params.duration },
+    { distance: req.params.distance },
+    { weight: req.params.weight },
+    { reps: req.params.reps },
+    { sets: req.params.sets }
+    )
   .then(dbWorkout => {
     res.json(dbWorkout);
   })
